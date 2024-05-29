@@ -13,7 +13,7 @@ module.exports = class CloudnaryService {
   }
 
   //-----------------------------------------------[  Image Upload path ]------------------------------------------------
-  async uploadImageWithPath(imageUrl, folder) {
+  async uploadImageFromPath(imageUrl, folder) {
     try {
       const result = await cloudinary.uploader.upload(imageUrl, {
         folder: folder,
@@ -27,7 +27,7 @@ module.exports = class CloudnaryService {
   }
 
   //-----------------------------------------------[  Image Upload buffer ]----------------------------------------------
-  async uploadImageWithPath(imageUrl, folder) {
+  async uploadImageFromBuffer(imageUrl, folder) {
     try {
       const result = await cloudinary.uploader.upload(imageUrl, {
         folder: folder,

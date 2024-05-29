@@ -8,9 +8,6 @@ const {
 } = require("../../utils/common.utils");
 const { MSG } = require("../../helper/constant");
 const { User } = require("../../model/user/user.model");
-const {
-  ErrorExceptionWithResponse,
-} = require("../../exception/error.exception");
 const JwtService = require("../common/jwt.service");
 const { v4: uuidv4 } = require("uuid");
 const EmailService = require("../common/email.service");
@@ -20,6 +17,9 @@ const {
 } = require("../../template/mail.template");
 const ip = require("ip");
 const CloudnaryService = require("../common/cloudnary.service");
+const {
+  ErrorExceptionWithResponse,
+} = require("../../exception/error.exception");
 
 module.exports = class UserService {
   constructor() {
@@ -39,7 +39,7 @@ module.exports = class UserService {
 
       //cloudnary image
       if (file) {
-        const result = await this.cloudnaryService.uploadImageWithPath(
+        const result = await this.cloudnaryService.uploadImageFromPath(
           file.path,
           "user"
         );
@@ -55,11 +55,11 @@ module.exports = class UserService {
         );
 
       Body.createdAt = await new Date();
-      Body.otp = await generateOtp();
+      Body.otp = generateOtp();
       Body.password = await passwordEncrypt(Body.password);
-      Body.uuid = await uuidv4();
+      Body.uuid = uuidv4();
       user = await this.userModel.create(Body);
-      user.createdBy = await user._id;
+      user.createdBy = user._id;
       user = await user.save();
       user.password = undefined;
 

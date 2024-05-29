@@ -29,7 +29,7 @@ const passport = require("../strategy/google.strategy");
 //user registration
 router.post(
   "/register",
-  multerService.singleImageUpload("image"),
+  multerService.singleImageOrFileUpload("image"),
   validateSchema(userRegisterJoiValidation, "body"),
   Register.controller
 );
@@ -74,7 +74,7 @@ router.delete("/removeprofile", RemoveProfile.controller);
 //user update profile
 router.put(
   "/updateProfile",
-  multerService.singleImageUpload("image"),
+  multerService.singleImageOrFileUpload("image"),
   validateSchema(userUpdateProfileJoiValidation, "body"),
   UpdateProfile.controller
 );

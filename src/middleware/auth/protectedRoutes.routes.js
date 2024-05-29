@@ -7,6 +7,7 @@ module.exports.protectedRoutes = [
 
   // Course Routes
   { path: "/course/create", methods: ["POST"] },
+  { path: "/course/upload", methods: ["POST"] },
   { path: "/course/update", methods: ["PUT"] },
   { path: "/course/delete", methods: ["DELETE"] },
   { path: "/course/get/:id", methods: ["GET"] },
